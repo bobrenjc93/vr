@@ -149,16 +149,11 @@ impl App {
                     continue;
                 }
 
-                let prefix = match diff_line.line_type {
-                    LineType::Added => "+",
-                    LineType::Removed => "-",
-                    LineType::Context => " ",
-                    _ => continue,
-                };
-
+                // The content already includes the prefix (+, -, or space)
+                // so we just use it directly
                 context.push(ContextLine {
                     content: diff_line.content.clone(),
-                    prefix: prefix.to_string(),
+                    prefix: String::new(), // Not used since content already has prefix
                 });
             }
         }

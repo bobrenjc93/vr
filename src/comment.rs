@@ -6,8 +6,8 @@ use std::path::Path;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ContextLine {
-    pub content: String,
-    pub prefix: String, // "+", "-", or " " for added, removed, context
+    pub content: String, // Line content including the +/- prefix
+    pub prefix: String,  // Deprecated: prefix is already in content
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -67,11 +67,11 @@ pub fn save_comments_to_file(comments: &[Comment], file_path: &str) -> Result<()
     for comment in comments {
         output.push_str(&format!("{}:{}\n", comment.file_path, comment.line_number));
 
-        // Add context lines
+        // Add context lines (content already includes +/- prefix)
         if !comment.context.is_empty() {
             output.push_str("\n");
             for ctx in &comment.context {
-                output.push_str(&format!("{}{}\n", ctx.prefix, ctx.content));
+                output.push_str(&format!("{}\n", ctx.content));
             }
             output.push_str("\n");
         }
