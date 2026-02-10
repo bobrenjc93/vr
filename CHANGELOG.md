@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-02-10
+
+### Fixed
+- Build Linux binaries with musl for better compatibility across different GLIBC versions
+- Fixes "GLIBC_2.39 not found" errors on older Linux systems
+
 ## [0.1.0] - 2026-02-09
 
 ### Added
@@ -23,5 +29,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Comment persistence with file path and line number provenance
 - Multi-platform support (Linux x86_64/ARM64, macOS Intel/Apple Silicon, Windows)
 
-[Unreleased]: https://github.com/bobrenjc93/vr/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/bobrenjc93/vr/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/bobrenjc93/vr/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/bobrenjc93/vr/releases/tag/v0.1.0
