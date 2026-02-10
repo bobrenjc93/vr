@@ -123,8 +123,8 @@ impl App {
         if let Some(line) = self.diff_lines.get(self.cursor) {
             // Only allow comments on added or context lines (not removed lines)
             if let Some(line_number) = line.new_line_no {
-                // Extract context: 1 line before (not 3)
-                let context = self.extract_context_before(self.cursor, 1);
+                // Extract context: 5 lines before
+                let context = self.extract_context_before(self.cursor, 5);
                 let comment = Comment::new(line.file_path.clone(), line_number, text, context);
                 self.comments.push(comment);
             }
