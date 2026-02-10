@@ -123,21 +123,21 @@ impl App {
         if let Some(line) = self.diff_lines.get(self.cursor) {
             // Only allow comments on added or context lines (not removed lines)
             if let Some(line_number) = line.new_line_no {
-                // Extract context: 3 lines before and after
-                let context = self.extract_context(self.cursor, 3);
+                // Extract context: 3 lines before (not after)
+                let context = self.extract_context_before(self.cursor, 3);
                 let comment = Comment::new(line.file_path.clone(), line_number, text, context);
                 self.comments.push(comment);
             }
         }
     }
 
-    /// Extract context lines around the given index
-    fn extract_context(&self, index: usize, context_size: usize) -> Vec<ContextLine> {
+    /// Extract context lines before the given index (not after)
+    fn extract_context_before(&self, index: usize, context_size: usize) -> Vec<ContextLine> {
         let mut context = Vec::new();
 
-        // Get context lines before and after
+        // Get context lines before (including the current line)
         let start = index.saturating_sub(context_size);
-        let end = (index + context_size + 1).min(self.diff_lines.len());
+        let end = index + 1; // Include current line
 
         for i in start..end {
             if let Some(diff_line) = self.diff_lines.get(i) {
