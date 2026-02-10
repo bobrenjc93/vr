@@ -1,5 +1,5 @@
 use anyhow::{Context, Result};
-use std::path::Path;
+use std::env;
 use std::process::Command;
 
 #[derive(Debug, Clone, Copy, PartialEq)]
@@ -9,15 +9,29 @@ pub enum VcsType {
 }
 
 impl VcsType {
-    /// Auto-detect which VCS is being used in the current directory
+    /// Auto-detect which VCS is being used by walking up the directory tree
     pub fn detect() -> Result<Self> {
-        if Path::new(".git").exists() {
-            Ok(VcsType::Git)
-        } else if Path::new(".hg").exists() {
-            Ok(VcsType::Mercurial)
-        } else {
-            anyhow::bail!("Not a git or mercurial repository")
+        let mut current_dir = env::current_dir().context("Failed to get current directory")?;
+
+        loop {
+            // Check for .git directory
+            if current_dir.join(".git").exists() {
+                return Ok(VcsType::Git);
+            }
+
+            // Check for .hg directory
+            if current_dir.join(".hg").exists() {
+                return Ok(VcsType::Mercurial);
+            }
+
+            // Move up to parent directory
+            match current_dir.parent() {
+                Some(parent) => current_dir = parent.to_path_buf(),
+                None => break,
+            }
         }
+
+        anyhow::bail!("Not a git or mercurial repository")
     }
 
     /// Get diff text from the detected VCS
@@ -37,11 +51,6 @@ impl VcsType {
 /// - Some("abc123"): specific commit
 /// - Some("main..feature"): branch diff
 fn get_git_diff(git_ref: Option<&str>) -> Result<String> {
-    // Verify we're in a git repository
-    if !Path::new(".git").exists() {
-        anyhow::bail!("Not a git repository");
-    }
-
     let output = match git_ref {
         None => {
             // Get uncommitted changes
@@ -80,11 +89,6 @@ fn get_git_diff(git_ref: Option<&str>) -> Result<String> {
 /// - Some("123"): specific changeset (hg export 123)
 /// - Some("branch1::branch2"): range of changesets
 fn get_hg_diff(hg_ref: Option<&str>) -> Result<String> {
-    // Verify we're in a mercurial repository
-    if !Path::new(".hg").exists() {
-        anyhow::bail!("Not a mercurial repository");
-    }
-
     let output = match hg_ref {
         None => {
             // Get uncommitted changes

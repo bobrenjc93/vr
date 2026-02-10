@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.1] - 2026-02-10
+
+### Fixed
+- Walk up directory tree to find .git or .hg directory (fixes detection in subdirectories of large monorepos)
+
 ## [0.2.0] - 2026-02-10
 
 ### Added
@@ -44,7 +49,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Comment persistence with file path and line number provenance
 - Multi-platform support (Linux x86_64/ARM64, macOS Intel/Apple Silicon, Windows)
 
-[Unreleased]: https://github.com/bobrenjc93/vr/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/bobrenjc93/vr/compare/v0.2.1...HEAD
+[0.2.1]: https://github.com/bobrenjc93/vr/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/bobrenjc93/vr/compare/v0.1.1...v0.2.0
 [0.1.1]: https://github.com/bobrenjc93/vr/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/bobrenjc93/vr/releases/tag/v0.1.0
