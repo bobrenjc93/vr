@@ -60,9 +60,7 @@ pub fn save_comments_to_file(comments: &[Comment], file_path: &str) -> Result<()
     for comment in comments {
         output.push_str(&format!(
             "{}:{}\n{}\n\n",
-            comment.file_path,
-            comment.line_number,
-            comment.text
+            comment.file_path, comment.line_number, comment.text
         ));
     }
 

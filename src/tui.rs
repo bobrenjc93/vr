@@ -207,7 +207,10 @@ pub fn run(app: &mut App) -> Result<()> {
             if let Event::Key(key) = event::read()? {
                 // Handle quit in any mode
                 if key.code == KeyCode::Char('c')
-                    && key.modifiers.contains(crossterm::event::KeyModifiers::CONTROL) {
+                    && key
+                        .modifiers
+                        .contains(crossterm::event::KeyModifiers::CONTROL)
+                {
                     app.quit();
                 }
 
@@ -233,10 +236,15 @@ fn render_help(f: &mut ratatui::Frame, area: ratatui::layout::Rect) {
     let help_text = vec![
         Line::from(Span::styled(
             "Vim Review - Keyboard Shortcuts",
-            Style::default().fg(Color::Cyan).add_modifier(Modifier::BOLD),
+            Style::default()
+                .fg(Color::Cyan)
+                .add_modifier(Modifier::BOLD),
         )),
         Line::from(""),
-        Line::from(Span::styled("Navigation:", Style::default().add_modifier(Modifier::BOLD))),
+        Line::from(Span::styled(
+            "Navigation:",
+            Style::default().add_modifier(Modifier::BOLD),
+        )),
         Line::from("  j / ↓         Move cursor down"),
         Line::from("  k / ↑         Move cursor up"),
         Line::from("  g             Jump to top"),
@@ -244,18 +252,27 @@ fn render_help(f: &mut ratatui::Frame, area: ratatui::layout::Rect) {
         Line::from("  Ctrl+d        Page down"),
         Line::from("  Ctrl+u        Page up"),
         Line::from(""),
-        Line::from(Span::styled("Comments:", Style::default().add_modifier(Modifier::BOLD))),
+        Line::from(Span::styled(
+            "Comments:",
+            Style::default().add_modifier(Modifier::BOLD),
+        )),
         Line::from("  o / O         Add comment at current line"),
         Line::from("  Enter         Add new line (in insert mode)"),
         Line::from("  ESC           Save comment and exit insert mode"),
         Line::from("  d             Delete comment at current line"),
         Line::from(""),
-        Line::from(Span::styled("Search:", Style::default().add_modifier(Modifier::BOLD))),
+        Line::from(Span::styled(
+            "Search:",
+            Style::default().add_modifier(Modifier::BOLD),
+        )),
         Line::from("  /             Start search"),
         Line::from("  n             Next match"),
         Line::from("  N             Previous match"),
         Line::from(""),
-        Line::from(Span::styled("Other:", Style::default().add_modifier(Modifier::BOLD))),
+        Line::from(Span::styled(
+            "Other:",
+            Style::default().add_modifier(Modifier::BOLD),
+        )),
         Line::from("  ?             Toggle this help screen"),
         Line::from("  :wq           Save comments and quit"),
         Line::from("  :w            Save comments"),
@@ -269,7 +286,7 @@ fn render_help(f: &mut ratatui::Frame, area: ratatui::layout::Rect) {
         )),
     ];
 
-    let paragraph = Paragraph::new(help_text)
-        .block(Block::default().borders(Borders::ALL).title("Help"));
+    let paragraph =
+        Paragraph::new(help_text).block(Block::default().borders(Borders::ALL).title("Help"));
     f.render_widget(paragraph, area);
 }

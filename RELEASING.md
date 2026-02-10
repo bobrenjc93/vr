@@ -58,16 +58,16 @@ Once the tag is pushed, GitHub Actions will automatically:
 
 ### 4. Verify the Release
 
-1. Check the [Actions tab](https://github.com/YOUR_USERNAME/vim-review/actions) to ensure the workflow completed successfully
+1. Check the [Actions tab](https://github.com/bobrenjc93/vr/actions) to ensure the workflow completed successfully
 
-2. Visit the [Releases page](https://github.com/YOUR_USERNAME/vim-review/releases) to verify:
+2. Visit the [Releases page](https://github.com/bobrenjc93/vr/releases) to verify:
    - All binaries are present
    - SHA256SUMS file is present
    - Release notes look correct
 
 3. Test download and installation on at least one platform:
    ```bash
-   curl -LO https://github.com/YOUR_USERNAME/vim-review/releases/download/v0.2.0/vr-linux-x86_64
+   curl -LO https://github.com/bobrenjc93/vr/releases/download/v0.2.0/vr-linux-x86_64
    chmod +x vr-linux-x86_64
    ./vr-linux-x86_64
    ```

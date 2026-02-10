@@ -123,11 +123,7 @@ impl App {
         if let Some(line) = self.diff_lines.get(self.cursor) {
             // Only allow comments on added or context lines (not removed lines)
             if let Some(line_number) = line.new_line_no {
-                let comment = Comment::new(
-                    line.file_path.clone(),
-                    line_number,
-                    text,
-                );
+                let comment = Comment::new(line.file_path.clone(), line_number, text);
                 self.comments.push(comment);
             }
         }
@@ -137,9 +133,8 @@ impl App {
         if let Some(line) = self.diff_lines.get(self.cursor) {
             if let Some(line_number) = line.new_line_no {
                 // Remove comment matching this file and line
-                self.comments.retain(|c| {
-                    !(c.file_path == line.file_path && c.line_number == line_number)
-                });
+                self.comments
+                    .retain(|c| !(c.file_path == line.file_path && c.line_number == line_number));
             }
         }
     }

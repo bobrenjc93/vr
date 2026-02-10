@@ -10,9 +10,9 @@ Before you publish this to GitHub:
 
 2. **Create GitHub Repository**
    ```bash
-   # On GitHub, create a new repository named "vim-review"
+   # On GitHub, create a new repository named "vr"
    # Then:
-   git remote add origin https://github.com/YOUR_USERNAME/vim-review.git
+   git remote add origin https://github.com/bobrenjc93/vr.git
    git push -u origin main
    ```
 

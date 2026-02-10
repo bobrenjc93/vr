@@ -32,8 +32,8 @@ Feature suggestions are welcome! Please:
 
 1. **Fork and Clone**
    ```bash
-   git clone https://github.com/YOUR_USERNAME/vim-review.git
-   cd vim-review
+   git clone https://github.com/bobrenjc93/vr.git
+   cd vr
    ```
 
 2. **Create a Branch**

@@ -14,12 +14,12 @@ A terminal-based UI (TUI) for reviewing git changes with vim keybindings. Naviga
 
 ### Pre-built Binaries (Recommended)
 
-Download the latest release for your platform from [GitHub Releases](https://github.com/YOUR_USERNAME/vim-review/releases):
+Download the latest release for your platform from [GitHub Releases](https://github.com/bobrenjc93/vr/releases):
 
 #### Linux (x86_64)
 ```bash
 # Download and install
-curl -LO https://github.com/YOUR_USERNAME/vim-review/releases/latest/download/vr-linux-x86_64
+curl -LO https://github.com/bobrenjc93/vr/releases/latest/download/vr-linux-x86_64
 chmod +x vr-linux-x86_64
 sudo mv vr-linux-x86_64 /usr/local/bin/vr
 
@@ -31,21 +31,21 @@ mv vr-linux-x86_64 ~/.local/bin/vr
 
 #### Linux (ARM64/aarch64)
 ```bash
-curl -LO https://github.com/YOUR_USERNAME/vim-review/releases/latest/download/vr-linux-aarch64
+curl -LO https://github.com/bobrenjc93/vr/releases/latest/download/vr-linux-aarch64
 chmod +x vr-linux-aarch64
 sudo mv vr-linux-aarch64 /usr/local/bin/vr
 ```
 
 #### macOS (Intel)
 ```bash
-curl -LO https://github.com/YOUR_USERNAME/vim-review/releases/latest/download/vr-macos-x86_64
+curl -LO https://github.com/bobrenjc93/vr/releases/latest/download/vr-macos-x86_64
 chmod +x vr-macos-x86_64
 sudo mv vr-macos-x86_64 /usr/local/bin/vr
 ```
 
 #### macOS (Apple Silicon)
 ```bash
-curl -LO https://github.com/YOUR_USERNAME/vim-review/releases/latest/download/vr-macos-aarch64
+curl -LO https://github.com/bobrenjc93/vr/releases/latest/download/vr-macos-aarch64
 chmod +x vr-macos-aarch64
 sudo mv vr-macos-aarch64 /usr/local/bin/vr
 ```
@@ -69,8 +69,8 @@ Requires [Rust](https://rustup.rs/) 1.70 or later.
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/vim-review.git
-cd vim-review
+git clone https://github.com/bobrenjc93/vr.git
+cd vr
 
 # Build and install
 cargo install --path .
@@ -206,8 +206,8 @@ Contributions are welcome! Please:
 
 ```bash
 # Clone and build
-git clone https://github.com/YOUR_USERNAME/vim-review.git
-cd vim-review
+git clone https://github.com/bobrenjc93/vr.git
+cd vr
 cargo build
 
 # Run tests

@@ -23,5 +23,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Comment persistence with file path and line number provenance
 - Multi-platform support (Linux x86_64/ARM64, macOS Intel/Apple Silicon, Windows)
 
-[Unreleased]: https://github.com/YOUR_USERNAME/vim-review/compare/v0.1.0...HEAD
-[0.1.0]: https://github.com/YOUR_USERNAME/vim-review/releases/tag/v0.1.0
+[Unreleased]: https://github.com/bobrenjc93/vr/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/bobrenjc93/vr/releases/tag/v0.1.0
