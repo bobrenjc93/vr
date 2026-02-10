@@ -1,8 +1,8 @@
 mod app;
 mod comment;
 mod diff;
-mod git;
 mod tui;
+mod vcs;
 mod vim;
 
 use anyhow::Result;
@@ -12,15 +12,18 @@ use uuid::Uuid;
 fn main() -> Result<()> {
     let args: Vec<String> = env::args().collect();
 
-    // Parse git ref argument (default to uncommitted changes)
-    let git_ref = if args.len() > 1 {
+    // Auto-detect VCS type (git or mercurial)
+    let vcs_type = vcs::VcsType::detect()?;
+
+    // Parse VCS ref argument (default to uncommitted changes)
+    let vcs_ref = if args.len() > 1 {
         Some(args[1].clone())
     } else {
         None
     };
 
-    // Get diff from git
-    let diff_text = git::get_diff(git_ref.as_deref())?;
+    // Get diff from VCS
+    let diff_text = vcs_type.get_diff(vcs_ref.as_deref())?;
 
     if diff_text.is_empty() {
         println!("No changes to review");

@@ -1,9 +1,10 @@
 # Vim Review
 
-A terminal-based UI (TUI) for reviewing git changes with vim keybindings. Navigate diffs like vim, add comments inline, and persist them with code provenance for AI consumption.
+A terminal-based UI (TUI) for reviewing git and mercurial changes with vim keybindings. Navigate diffs like vim, add comments inline, and persist them with code provenance for AI consumption.
 
 ## Features
 
+- 🔄 Works with both Git and Mercurial (auto-detects)
 - 🎨 Colorized diff view (green for additions, red for deletions)
 - ⌨️ Vim-style keybindings for navigation
 - 💬 Inline commenting with persistence
@@ -84,12 +85,16 @@ cargo build --release
 
 ```bash
 vr --version  # Should work once we add --version flag
-# Or just run vr in any git repository
-cd /path/to/git/repo
+# Or just run vr in any git or mercurial repository
+cd /path/to/repo
 vr
 ```
 
 ## Usage
+
+The tool auto-detects whether you're in a git or mercurial repository.
+
+### Git Examples
 
 ```bash
 # Review uncommitted changes
@@ -103,6 +108,22 @@ vr abc123
 
 # Review branch diff
 vr main..feature
+```
+
+### Mercurial Examples
+
+```bash
+# Review uncommitted changes
+vr
+
+# Review current changeset
+vr .
+
+# Review specific changeset
+vr 123
+
+# Review range of changesets
+vr 100::110
 ```
 
 ## Keybindings
