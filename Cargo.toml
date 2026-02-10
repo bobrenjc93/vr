@@ -1,6 +1,6 @@
 [package]
 name = "vim-review"
-version = "0.2.1"
+version = "0.3.0"
 edition = "2021"
 authors = ["vim-review contributors"]
 description = "A TUI for reviewing git and mercurial changes with vim keybindings and inline comments"

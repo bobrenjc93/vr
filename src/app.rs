@@ -1,5 +1,5 @@
-use crate::comment::Comment;
-use crate::diff::DiffLine;
+use crate::comment::{Comment, ContextLine};
+use crate::diff::{DiffLine, LineType};
 
 #[derive(Debug, Clone, PartialEq)]
 pub enum Mode {
@@ -123,10 +123,47 @@ impl App {
         if let Some(line) = self.diff_lines.get(self.cursor) {
             // Only allow comments on added or context lines (not removed lines)
             if let Some(line_number) = line.new_line_no {
-                let comment = Comment::new(line.file_path.clone(), line_number, text);
+                // Extract context: 3 lines before and after
+                let context = self.extract_context(self.cursor, 3);
+                let comment = Comment::new(line.file_path.clone(), line_number, text, context);
                 self.comments.push(comment);
             }
         }
+    }
+
+    /// Extract context lines around the given index
+    fn extract_context(&self, index: usize, context_size: usize) -> Vec<ContextLine> {
+        let mut context = Vec::new();
+
+        // Get context lines before and after
+        let start = index.saturating_sub(context_size);
+        let end = (index + context_size + 1).min(self.diff_lines.len());
+
+        for i in start..end {
+            if let Some(diff_line) = self.diff_lines.get(i) {
+                // Skip file headers and hunk headers
+                if matches!(
+                    diff_line.line_type,
+                    LineType::FileHeader | LineType::HunkHeader
+                ) {
+                    continue;
+                }
+
+                let prefix = match diff_line.line_type {
+                    LineType::Added => "+",
+                    LineType::Removed => "-",
+                    LineType::Context => " ",
+                    _ => continue,
+                };
+
+                context.push(ContextLine {
+                    content: diff_line.content.clone(),
+                    prefix: prefix.to_string(),
+                });
+            }
+        }
+
+        context
     }
 
     pub fn delete_comment_at_cursor(&mut self) {

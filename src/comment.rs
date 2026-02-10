@@ -5,11 +5,18 @@ use std::fs;
 use std::path::Path;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct ContextLine {
+    pub content: String,
+    pub prefix: String, // "+", "-", or " " for added, removed, context
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Comment {
     pub file_path: String,
     pub line_number: usize,
     pub text: String,
     pub timestamp: DateTime<Utc>,
+    pub context: Vec<ContextLine>, // Lines of context around the comment
 }
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -58,10 +65,18 @@ pub fn save_comments_to_file(comments: &[Comment], file_path: &str) -> Result<()
     let mut output = String::new();
 
     for comment in comments {
-        output.push_str(&format!(
-            "{}:{}\n{}\n\n",
-            comment.file_path, comment.line_number, comment.text
-        ));
+        output.push_str(&format!("{}:{}\n", comment.file_path, comment.line_number));
+
+        // Add context lines
+        if !comment.context.is_empty() {
+            output.push_str("\n");
+            for ctx in &comment.context {
+                output.push_str(&format!("{}{}\n", ctx.prefix, ctx.content));
+            }
+            output.push_str("\n");
+        }
+
+        output.push_str(&format!("{}\n\n", comment.text));
     }
 
     let mut file = fs::File::create(file_path)?;
@@ -71,12 +86,18 @@ pub fn save_comments_to_file(comments: &[Comment], file_path: &str) -> Result<()
 }
 
 impl Comment {
-    pub fn new(file_path: String, line_number: usize, text: String) -> Self {
+    pub fn new(
+        file_path: String,
+        line_number: usize,
+        text: String,
+        context: Vec<ContextLine>,
+    ) -> Self {
         Self {
             file_path,
             line_number,
             text,
             timestamp: Utc::now(),
+            context,
         }
     }
 }

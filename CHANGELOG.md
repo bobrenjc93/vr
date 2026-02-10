@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-02-10
+
+### Added
+- Include 3 lines of context around each comment in output
+- Add +/- prefixes to context lines to show if they are added, removed, or unchanged lines
+- Better code provenance for AI consumption with full context
+
 ## [0.2.1] - 2026-02-10
 
 ### Fixed
@@ -49,7 +56,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Comment persistence with file path and line number provenance
 - Multi-platform support (Linux x86_64/ARM64, macOS Intel/Apple Silicon, Windows)
 
-[Unreleased]: https://github.com/bobrenjc93/vr/compare/v0.2.1...HEAD
+[Unreleased]: https://github.com/bobrenjc93/vr/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/bobrenjc93/vr/compare/v0.2.1...v0.3.0
 [0.2.1]: https://github.com/bobrenjc93/vr/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/bobrenjc93/vr/compare/v0.1.1...v0.2.0
 [0.1.1]: https://github.com/bobrenjc93/vr/compare/v0.1.0...v0.1.1
