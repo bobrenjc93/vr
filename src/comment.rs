@@ -67,13 +67,19 @@ pub fn save_comments_to_file(comments: &[Comment], file_path: &str) -> Result<()
     for comment in comments {
         output.push_str(&format!("{}:{}\n", comment.file_path, comment.line_number));
 
-        // Add context lines (content already includes +/- prefix)
+        // Add context lines with visual separators
         if !comment.context.is_empty() {
-            output.push_str("\n");
+            output.push_str("----------------------------------------------------------\n");
             for ctx in &comment.context {
-                output.push_str(&format!("{}\n", ctx.content));
+                // Replace leading space with = for context lines
+                let line = if ctx.content.starts_with(' ') {
+                    format!("={}", &ctx.content[1..])
+                } else {
+                    ctx.content.clone()
+                };
+                output.push_str(&format!("{}\n", line));
             }
-            output.push_str("\n");
+            output.push_str("----------------------------------------------------------\n");
         }
 
         output.push_str(&format!("{}\n\n", comment.text));

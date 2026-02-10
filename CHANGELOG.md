@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.3] - 2026-02-10
+
+### Changed
+- Use `=` prefix for unchanged lines (instead of space) for better visual clarity
+- Add separator lines (dashes) around context blocks
+- Remove extra blank lines for cleaner output
+- Much clearer visual distinction between added (+), removed (-), and unchanged (=) lines
+
 ## [0.3.2] - 2026-02-10
 
 ### Fixed
@@ -68,7 +76,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Comment persistence with file path and line number provenance
 - Multi-platform support (Linux x86_64/ARM64, macOS Intel/Apple Silicon, Windows)
 
-[Unreleased]: https://github.com/bobrenjc93/vr/compare/v0.3.2...HEAD
+[Unreleased]: https://github.com/bobrenjc93/vr/compare/v0.3.3...HEAD
+[0.3.3]: https://github.com/bobrenjc93/vr/compare/v0.3.2...v0.3.3
 [0.3.2]: https://github.com/bobrenjc93/vr/compare/v0.3.1...v0.3.2
 [0.3.1]: https://github.com/bobrenjc93/vr/compare/v0.3.0...v0.3.1
 [0.3.0]: https://github.com/bobrenjc93/vr/compare/v0.2.1...v0.3.0
